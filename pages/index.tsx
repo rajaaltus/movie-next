@@ -12,7 +12,6 @@ export default function Home() {
     <>
       <div className="w-full h-full bg-indigo-800 flex items-center justify-center">
         <div className="px-4 py-8 lg:max-w-6xl mx-auto">
-          {/* <PageTitle title="Recent" currentPage={page} onNext={handleNext} onPrev={handleNext} /> */}
           <Movies page={page} />
         </div>
       </div>
