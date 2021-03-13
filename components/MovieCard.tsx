@@ -1,5 +1,7 @@
+import Link from 'next/link';
 
 type MovieProps = {
+  id: number,
   title: string,
   image: string,
   year: number,
@@ -7,11 +9,13 @@ type MovieProps = {
   description: string
 }
 
-const MovieCard= ({title,image,year, rating, description}:MovieProps) => {
+const MovieCard= ({id,title,image,year, rating, description}:MovieProps) => {
   return (
     <>
+    <Link href="/movie/[id]" as={`/movie/${id}`}>
+      <a>
      <div className="w-full h-full bg-purple-700 rounded-lg shadow-md overflow-hidden pb-2">
-       <img className="" src={image} alt={title} />
+       <img className="w-full object-cover" src={image} alt={title} />
        <div className="px-2 py-1">
        <span className="text-sm text-indigo-100">{year}</span>
        <h1 className="text-white text-lg truncate">{title}</h1>
@@ -23,6 +27,8 @@ const MovieCard= ({title,image,year, rating, description}:MovieProps) => {
         </span>
        </div>
      </div> 
+     </a>
+    </Link>
     </>
   )
 }
