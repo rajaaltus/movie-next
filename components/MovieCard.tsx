@@ -13,7 +13,7 @@ const MovieCard= ({id,title,image,year, rating, description}:MovieProps) => {
   return (
     <>
     <Link href="/movie/[id]" as={`/movie/${id}`}>
-      <a>
+      <a className="transform hover:-translate-y-1 duration-200">
      <div className="w-full h-full bg-purple-700 rounded-lg shadow-md overflow-hidden pb-2">
        <img className="w-full object-cover" src={image} alt={title} />
        <div className="px-2 py-1">

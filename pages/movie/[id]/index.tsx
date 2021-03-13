@@ -1,9 +1,9 @@
 
-
-const movie = ({movie}) => {
+const Movie = ({movie}) => {
   return (
     <div className="w-full min-h-screen bg-indigo-800">
       <div className="md:flex md:items-start md:justify-between w-full lg:max-w-4xl md:space-x-4 px-4 md:mx-auto py-8">
+        
         <div className="w-full md:w-2/6 rounded-lg shadow-lg overflow-hidden">
           <img className="w-full object-cover" src={movie.large_cover_image} alt={movie.title} />
         </div>
@@ -33,23 +33,8 @@ const movie = ({movie}) => {
   )
 }
 
-
-
-export const getStaticPaths = async () => {
-  const res = await fetch(`https://yts.mx/api/v2/list_movies.json?limit=20&sort_by=date_added&page=1`);
-  const data = await res.json();
-  const movies = data.data.movies;
-
-  const ids = movies.map((movie) => movie.id);
-  const paths = ids.map((id) => ({ params: { id: id.toString() } }));
-
-  return {
-    paths,
-    fallback: false
-  }
-}
-export const getStaticProps = async (context) => {
-  const res = await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${context.params.id}`);
+export const getServerSideProps = async (context) => {
+  const res = await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${context.params.id}&with_cast=true`);
   const data = await res.json();
   const movie = data.data.movie;
   return {
@@ -58,4 +43,5 @@ export const getStaticProps = async (context) => {
     }
   }
 }
-export default movie
+
+export default Movie
